@@ -9,8 +9,41 @@
 </template>
 
 <script>
+import axios from "axios";
+import { mapGetters, mapMutations } from "vuex";
+
 export default {
   name: "Student",
+  data() {
+    return {
+      nameLogin: "",
+      gradeLogin: "",
+    };
+  },
+  computed: {
+    ...mapGetters(["grade"]),
+    ...mapMutations(["SET_GRADE"]),
+  },
+  created() {
+    //this.getTestLogin();
+  },
+  methods: {
+    getTestLogin() {
+      axios
+        .get("https://group3-anima.herokuapp.com/Test", {
+          headers: {
+            Authorization: "Bearer",
+          },
+        })
+        .then((response) => {
+          this.nameLogin = response.data.name;
+          this.gradeLogin = response.data.grade;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+  },
 };
 </script>
 

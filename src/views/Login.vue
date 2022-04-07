@@ -14,9 +14,7 @@
         type="password"
         placeholder="Senha:"
       />
-      <button class="btn-login" v-on:click="loginStudent()">
-        LOGIN ESTUDANTE
-      </button>
+      <button class="btn-login" v-on:click="getRole()">LOGIN ESTUDANTE</button>
       <button class="btn-login" v-on:click="loginTeacher()">
         LOGIN PROFESSOR
       </button>
@@ -52,18 +50,18 @@ export default {
   methods: {
     getToken() {
       axios
-        .post("https://group3-anima.herokuapp.com/Home/login", {
+        .post("https://group3-anima.herokuapp.com/Home/Login", {
           headers: {
             "Access-Control-Allow-Origin": "*",
           },
           body: {
-            email: "adm@adm.com",
-            password: "adm",
+            email: "matheus@matheus.com",
+            password: "matheus",
           },
         })
-        .then((response) => {
-          context.commit("SET_TOKEN", response.data.token);
-        })
+        // .then((response) => {
+        //   context.commit("SET_TOKEN", response.data.token);
+        // })
         .then(console.log)
         .catch((e) => {
           console.log(e);
@@ -73,7 +71,8 @@ export default {
       axios
         .get("https://group3-anima.herokuapp.com/User", {
           headers: {
-            Token: "",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbUBhZG0uY29tIiwicm9sZSI6ImFkbWluaXN0cmF0b3IiLCJuYmYiOjE2NDkzNDc0MjEsImV4cCI6MTY0OTM1NDYyMSwiaWF0IjoxNjQ5MzQ3NDIxfQ.MV5IFHkAZYyd1PNJE7EN9T5q9kimg7UQXvNpSKEQq2k",
           },
         })
         .then((response) => {
