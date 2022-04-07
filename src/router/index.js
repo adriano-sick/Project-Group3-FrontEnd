@@ -50,6 +50,7 @@ const routes = [{
         name: 'TeacherEvaluations',
         component: TeacherEvaluations
     }
+    
   
 ]
 

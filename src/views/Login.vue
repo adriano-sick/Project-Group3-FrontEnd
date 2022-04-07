@@ -4,20 +4,17 @@
       <h3 class="title-login">Infinite<br /></h3>
       <input
         class="input-login"
-        :v-model="emailLogin"
-        type="text"
+        v-model="emailLogin"
+        type="email"
         placeholder="Login:"
       />
       <input
         class="input-password"
-        :v-model="passwordLogin"
+        v-model="passwordLogin"
         type="password"
         placeholder="Senha:"
       />
-      <button class="btn-login" v-on:click="getRole()">LOGIN ESTUDANTE</button>
-      <button class="btn-login" v-on:click="loginTeacher()">
-        LOGIN PROFESSOR
-      </button>
+      <button class="btn-login" @click="postUserLogin">ACESSAR</button>
 
       <p class="text-info">Acesse suas informações de Avaliação</p>
     </div>
@@ -32,80 +29,39 @@ export default {
   name: "Home",
   data() {
     return {
-      email: "",
-      password: "",
       emailLogin: "",
       passwordLogin: "",
-      role: "",
+      usersLogin: [],
     };
   },
   computed: {
-    ...mapGetters(["token"]),
-    ...mapMutations(["SET_TOKEN"]),
-  },
-  created() {
-    this.getToken();
-    this.getUserLogin();
+    ...mapGetters(["token", "users"]),
+    ...mapMutations(["SET_TOKEN", "SET_USERS"]),
   },
   methods: {
-    getToken() {
+    postUserLogin() {
+      const credentials = {
+        email: this.emailLogin,
+        password: this.passwordLogin,
+      };
       axios
-        .post("https://group3-anima.herokuapp.com/Home/Login", {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-          },
-          body: {
-            email: "matheus@matheus.com",
-            password: "matheus",
-          },
+        .post("https://group3-anima.herokuapp.com/Home/Login", credentials)
+        .then((response) => {
+          this.$router.push("/student");
+          return response.data;
         })
-        // .then((response) => {
-        //   context.commit("SET_TOKEN", response.data.token);
-        // })
         .then(console.log)
         .catch((e) => {
           console.log(e);
         });
     },
-    getUserLogin() {
-      axios
-        .get("https://group3-anima.herokuapp.com/User", {
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbUBhZG0uY29tIiwicm9sZSI6ImFkbWluaXN0cmF0b3IiLCJuYmYiOjE2NDkzNDc0MjEsImV4cCI6MTY0OTM1NDYyMSwiaWF0IjoxNjQ5MzQ3NDIxfQ.MV5IFHkAZYyd1PNJE7EN9T5q9kimg7UQXvNpSKEQq2k",
-          },
-        })
-        .then((response) => {
-          this.email = response.data.email;
-          this.password = response.data.password;
-          this.role = response.data.role;
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
     getRole() {
-      if (this.role == "teacher") {
+      let users = this.response.data;
+      if (users.role == "teacher") {
         loginTeacher();
-      } else if (this.role == "student") {
+      } else if (users.role == "student") {
         loginStudent();
       }
-    },
-    loginTeacher() {
-      // if(this.emailLogin == this.email){
-      // this.$router.push("/teacher");
-      // }else{
-      //    this.$router.push("/");
-      // }
-      this.$router.push("/teacher");
-    },
-    loginStudent() {
-      // if(this.emailLogin == this.email){
-      // this.$router.push("/student");
-      // }else{
-      //    this.$router.push("/");
-      // }
-      this.$router.push("/student");
     },
   },
 };
@@ -152,6 +108,7 @@ export default {
   height: 38px;
   margin-bottom: 12px;
   border-radius: 10px;
+  padding: 8px;
 }
 
 .input-login::placeholder,
