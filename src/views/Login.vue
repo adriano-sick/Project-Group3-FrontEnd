@@ -38,6 +38,7 @@ export default {
       password: "",
       emailLogin: "",
       passwordLogin: "",
+      role: "",
     };
   },
   computed: {
@@ -78,15 +79,33 @@ export default {
         .then((response) => {
           this.email = response.data.email;
           this.password = response.data.password;
+          this.role = response.data.role;
         })
         .catch((e) => {
           console.log(e);
         });
     },
+    getRole() {
+      if (this.role == "teacher") {
+        loginTeacher();
+      } else if (this.role == "student") {
+        loginStudent();
+      }
+    },
     loginTeacher() {
+      // if(this.emailLogin == this.email){
+      // this.$router.push("/teacher");
+      // }else{
+      //    this.$router.push("/");
+      // }
       this.$router.push("/teacher");
     },
     loginStudent() {
+      // if(this.emailLogin == this.email){
+      // this.$router.push("/student");
+      // }else{
+      //    this.$router.push("/");
+      // }
       this.$router.push("/student");
     },
   },
