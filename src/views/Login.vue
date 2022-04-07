@@ -4,13 +4,13 @@
       <h3 class="title-login">Infinite<br /></h3>
       <input
         class="input-login"
-        :v-model="user"
+        :v-model="emailLogin"
         type="text"
         placeholder="Login:"
       />
       <input
         class="input-password"
-        :v-model="password"
+        :v-model="passwordLogin"
         type="password"
         placeholder="Senha:"
       />
@@ -34,8 +34,10 @@ export default {
   name: "Home",
   data() {
     return {
-      user: "",
+      email: "",
       password: "",
+      emailLogin: "",
+      passwordLogin: "",
     };
   },
   computed: {
@@ -44,7 +46,7 @@ export default {
   },
   created() {
     this.getToken();
-    // this.getUserLogin();
+    this.getUserLogin();
   },
   methods: {
     getToken() {
@@ -69,14 +71,13 @@ export default {
     getUserLogin() {
       axios
         .get("https://group3-anima.herokuapp.com/User", {
-          params: {
-            username: this.user,
-            password: this.password,
+          headers: {
+            Token: "",
           },
         })
         .then((response) => {
-          // JSON responses are automatically parsed.
-          this.user = response.data;
+          this.email = response.data.email;
+          this.password = response.data.password;
         })
         .catch((e) => {
           console.log(e);
