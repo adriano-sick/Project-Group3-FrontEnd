@@ -1,23 +1,26 @@
 <template>
-  <div class="container">
-    <div class="container-login">
-      <h3 class="title-login">Infinite<br /></h3>
-      <input
-        class="input-login"
-        v-model="emailLogin"
-        type="email"
-        placeholder="Login:"
-      />
-      <input
-        class="input-password"
-        v-model="passwordLogin"
-        type="password"
-        placeholder="Senha:"
-      />
-      <button class="btn-login" @click="postUserLogin">ACESSAR</button>
+  <div>
+    <div class="container" v-if="isActiveLogin">
+      <div class="container-login">
+        <h3 class="title-login">Infinite<br /></h3>
+        <input
+          class="input-login"
+          v-model="emailLogin"
+          type="email"
+          placeholder="Login:"
+        />
+        <input
+          class="input-password"
+          v-model="passwordLogin"
+          type="password"
+          placeholder="Senha:"
+        />
+        <button class="btn-login" @click="postUserLogin">ACESSAR</button>
 
-      <p class="text-info">Acesse suas informações de Avaliação</p>
+        <p class="text-info">Acesse suas informações de Avaliação</p>
+      </div>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -26,12 +29,13 @@ import axios from "axios";
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
-  name: "Home",
+  name: "Login",
   data() {
     return {
       emailLogin: "",
       passwordLogin: "",
       usersLogin: [],
+      isActiveLogin: true,
     };
   },
   computed: {
@@ -47,7 +51,8 @@ export default {
       axios
         .post("https://group3-anima.herokuapp.com/Home/Login", credentials)
         .then((response) => {
-          this.$router.push("/student");
+          this.isActiveLogin = false;
+          this.$router.push("student");
           return response.data;
         })
         .then(console.log)
@@ -78,10 +83,7 @@ export default {
   width: 100%;
   height: 100vh;
   margin: 0;
-  background-image: url("../assets/earth.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: black;
 }
 
 .container-login {

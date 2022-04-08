@@ -1,9 +1,13 @@
 <template>
   <div class="container">
-    <nav>
+    <banner class="banner-text">
+      <p>O que você quer acessar?</p>
+    </banner>
+    <nav class="nav-student">
       <router-link to="/studentgrade">Alunos - Notas</router-link>
       <router-link to="/studentevaluation">Alunos - Provas</router-link>
     </nav>
+
     <router-view />
   </div>
 </template>
@@ -14,36 +18,6 @@ import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "Student",
-  data() {
-    return {
-      nameLogin: "",
-      gradeLogin: "",
-    };
-  },
-  computed: {
-    ...mapGetters(["grade"]),
-    ...mapMutations(["SET_GRADE"]),
-  },
-  created() {
-    //this.getTestLogin();
-  },
-  methods: {
-    getTestLogin() {
-      axios
-        .get("https://group3-anima.herokuapp.com/Test", {
-          headers: {
-            Authorization: "Bearer",
-          },
-        })
-        .then((response) => {
-          this.nameLogin = response.data.name;
-          this.gradeLogin = response.data.grade;
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
-  },
 };
 </script>
 
@@ -58,5 +32,31 @@ export default {
   width: 100%;
   height: 100vh;
   margin: 0 auto;
+}
+
+.nav-student {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-self: center;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+.nav-student a {
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.banner-text {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-self: center;
+  font-size: 40px;
 }
 </style>

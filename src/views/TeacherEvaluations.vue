@@ -1,6 +1,9 @@
 <template>
   <div class="container">
     <main class="main-content">
+      <nav>
+        <a href="" @click="backRoot">Voltar</a>
+      </nav>
       <section class="main-section">
         <h1 class="main-title" tabindex="0">CRIAR AVALIAÇÃO</h1>
 
@@ -42,6 +45,11 @@
 <script>
 export default {
   name: "TeacherEvaluations",
+  methods: {
+    backRoot() {
+      this.$router.push("/");
+    },
+  },
 };
 </script>
 

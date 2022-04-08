@@ -15,40 +15,40 @@ const routes = [{
         path: '*',
         redirect: '/'
     },
-      {
+     {
         path: '/',
         name: 'Login',
-        component: Login
+        component:  () => import('../views/Login.vue')
     },
     {
         path: '/student',
         name: 'Student',
-        component: Student
+        component: () => import('../views/Student.vue')
     },
         {
         path: '/studentgrade',
         name: 'StudentGrade',
-        component: StudentGrade
+        component: () => import('../views/StudentGrade.vue')
     },
      {
         path: '/studentevaluation',
         name: 'StudentEvaluation',
-        component: StudentEvaluation
+        component: () => import('../views/StudentEvaluation.vue')
     },   
         {
         path: '/teacher',
         name: 'Teacher',
-        component: Teacher
+        component: () => import('../views/Teacher.vue')
     },
      {
         path: '/teachergrades',
         name: 'TeacherGrades',
-        component: TeacherGrades
+        component: () => import('../views/TeacherGrades.vue')
     },
       {
         path: '/teacherevaluations',
         name: 'TeacherEvaluations',
-        component: TeacherEvaluations
+        component: () => import('../views/TeacherEvaluations.vue')
     }
     
   
