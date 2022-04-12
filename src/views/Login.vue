@@ -3,21 +3,12 @@
     <div class="container" v-if="isActiveLogin">
       <div class="container-login">
         <h3 class="title-login">Infinite<br /></h3>
-        <input
-          class="input-login"
-          v-model="emailLogin"
-          type="email"
-          placeholder="Login:"
-        />
-        <input
-          class="input-password"
-          v-model="passwordLogin"
-          type="password"
-          placeholder="Senha:"
-        />
-        <button class="btn-login" @click="postUserLogin">ACESSAR</button>
-
-        <p class="text-info">Acesse suas informações de Avaliação</p>
+        <hr/>
+        <input class="form-control input-login" v-model="emailLogin" type="email" placeholder="Digite seu e-mail"/>
+        <input class="form-control input-password" v-model="passwordLogin" type="password" placeholder="Digite sua senha"/>
+        <button class="btn btn-login btn-outline-success" aria-describedby="infoHelp" @click="postUserLogin">ACESSAR</button>
+        <small id="infoHelp" class="form-text text-muted">Nunca iremos compartilhar seus dados.</small>
+        <!--<p class="text-info">Acesse suas informações de Avaliação</p>-->
       </div>
     </div>
 
@@ -124,6 +115,7 @@ export default {
   margin-bottom: 12px;
   border-radius: 10px;
   padding: 8px;
+  text-align: center;
 }
 
 .input-login::placeholder,
