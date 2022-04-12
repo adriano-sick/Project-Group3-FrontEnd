@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <banner class="banner-text">
+    <div class="banner-text">
       <p>O que você quer acessar?</p>
-    </banner>
+    </div>
     <nav class="nav-teacher">
       <router-link to="/teachergrades">Professor - Notas</router-link>
 

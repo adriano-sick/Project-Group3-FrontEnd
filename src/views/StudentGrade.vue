@@ -21,12 +21,41 @@
     </main>
   </div>
 </template>
+
 <script>
+import axios from "axios";
+import { mapGetters, mapMutations } from "vuex";
 export default {
   name: "StudentGrade",
+  data() {
+    return {};
+  },
+  created() {
+    this.getUserLogin();
+  },
+  computed: {
+    ...mapGetters(["token", "users", "userID"]),
+    ...mapMutations(["SET_TOKEN", "SET_USERS", "SET_USERID"]),
+  },
   methods: {
     backRoot() {
       this.$router.push("/");
+    },
+
+    getUserLogin() {
+      axios
+        .get(
+          `https://group3-anima.herokuapp.com/Test/${this.$store.state.userID}`,
+          { headers: { Authorization: `Bearer ${this.$store.state.token}` } }
+        )
+        .then((response) => {
+          console.log(response.data);
+          return response.data;
+        })
+        .then(console.log)
+        .catch((e) => {
+          console.log(e);
+        });
     },
   },
 };

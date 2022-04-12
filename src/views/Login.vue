@@ -20,7 +20,8 @@
         <p class="text-info">Acesse suas informações de Avaliação</p>
       </div>
     </div>
-    <router-view></router-view>
+
+    <router-view :userID="userID" v-if="isActiveRouter"></router-view>
   </div>
 </template>
 
@@ -36,11 +37,12 @@ export default {
       passwordLogin: "",
       usersLogin: [],
       isActiveLogin: true,
+      isActiveRouter: false,
     };
   },
   computed: {
-    ...mapGetters(["token", "users"]),
-    ...mapMutations(["SET_TOKEN", "SET_USERS"]),
+    ...mapGetters(["token", "users", "userID"]),
+    ...mapMutations(["SET_TOKEN", "SET_USERS", "SET_USERID"]),
   },
   methods: {
     postUserLogin() {
@@ -52,7 +54,11 @@ export default {
         .post("https://group3-anima.herokuapp.com/Home/Login", credentials)
         .then((response) => {
           this.isActiveLogin = false;
-          this.$router.push("student");
+          this.usersLogin = response.data.user;
+          this.$store.commit("SET_TOKEN", response.data.token);
+          this.$store.commit("SET_USERID", response.data.userId);
+          console.log(this.usersLogin);
+          this.getRole();
           return response.data;
         })
         .then(console.log)
@@ -61,11 +67,18 @@ export default {
         });
     },
     getRole() {
-      let users = this.response.data;
-      if (users.role == "teacher") {
-        loginTeacher();
-      } else if (users.role == "student") {
-        loginStudent();
+      if (
+        this.usersLogin.role === "professor" ||
+        this.usersLogin.role === "administrator"
+      ) {
+        this.isActiveRouter = true;
+        this.$router.push("teacher");
+      } else if (
+        this.usersLogin.role === "student" ||
+        this.usersLogin.role === "administrator"
+      ) {
+        this.isActiveRouter = true;
+        this.$router.push("student");
       }
     },
   },

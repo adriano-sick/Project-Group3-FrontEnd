@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <banner class="banner-text">
+    <div class="banner-text">
       <p>O que você quer acessar?</p>
-    </banner>
+    </div>
     <nav class="nav-student">
       <router-link to="/studentgrade">Alunos - Notas</router-link>
       <router-link to="/studentevaluation">Alunos - Provas</router-link>
@@ -13,9 +13,6 @@
 </template>
 
 <script>
-import axios from "axios";
-import { mapGetters, mapMutations } from "vuex";
-
 export default {
   name: "Student",
 };
