@@ -1,9 +1,35 @@
 <template>
-  <div class="container">
+  <div class="container-Default">
     <main class="main-content">
-      <nav>
-        <a href="" @click="backRoot">Voltar</a>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1 nav-Brand-Default">Infinite</span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <router-link class="nav-link" to="/teacher">Início</router-link>
+            </li>
+            <li>
+              <router-link class="nav-link" to="/teacherevaluations">Provas</router-link>
+            </li>
+            <li>
+              <a class="nav-link" href="#">Notas<span class="sr-only">(você está aqui)</span></a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse nav-Logoff">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <router-link class="nav-link" to="/">Sair</router-link>
+            </li>
+          </ul>
+        </div>
       </nav>
+
       <section class="main-section">
         <h1 class="main-title" tabindex="0">CONSULTE AS NOTAS DOS ALUNOS</h1>
         <table>
@@ -39,7 +65,7 @@ export default {
 </script>
 
 <style>
-.container {
+.container-Default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -69,5 +95,8 @@ table td {
   padding: 12px 35px;
   border-collapse: collapse;
   background-color: black;
+}
+.nav-Logoff {
+  margin-right: 5px;
 }
 </style>
