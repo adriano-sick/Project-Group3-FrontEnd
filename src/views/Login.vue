@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container" v-if="isActiveLogin">
+    <div class="container-Default" v-if="isActiveLogin">
       <div class="container-login">
         <h3 class="title-login">Infinite<br /></h3>
         <hr/>
@@ -77,7 +77,7 @@ export default {
 </script>
 
 <style>
-.container {
+.container-Default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -95,7 +95,7 @@ export default {
   flex-direction: column;
   align-self: center;
   width: 320px;
-  margin-top: 60px;
+  margin-top: 150px;
 }
 
 .title-login {

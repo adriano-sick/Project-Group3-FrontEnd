@@ -6,7 +6,9 @@ export default {
         state.users = users;
     },
     SET_USERID(state, userID) {
-        state.C = userID;
+        state.userID = userID;
     },
-
+    SET_TESTS(state, tests) {
+        state.tests = tests;
+    },
 }

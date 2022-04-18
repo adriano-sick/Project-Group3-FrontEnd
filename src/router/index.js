@@ -45,13 +45,21 @@ const routes = [{
         name: 'TeacherGrades',
         component: () => import('../views/TeacherGrades.vue')
     },
-      {
+    {
         path: '/teacherevaluations',
         name: 'TeacherEvaluations',
         component: () => import('../views/TeacherEvaluations.vue')
+    },
+    {
+        path: '/teacherevaluationsstudents',
+        name: 'TeacherEvaluationsStudents',
+        component: () => import('../views/TeacherEvaluationsStudents.vue')
+    },
+    {
+        path: '/teacherquestions',
+        name: 'TeacherQuestions',
+        component: () => import('../views/TeacherQuestions.vue')
     }
-    
-  
 ]
 
 const router = new VueRouter({

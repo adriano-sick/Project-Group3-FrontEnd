@@ -29,42 +29,47 @@
         </div>
     </nav>
 
-    <h1 class="main-title titulo" tabindex="0">CRIAR AVALIAÇÃO</h1>
-
     <div class="container form-criar-teste">
+      <h1 class="main-title titulo" tabindex="0">SELECIONE OS ESTUDANTES</h1>
+      
       <form>
-        <div class="row">
-          <div class="col-md-11">
-            <input class="form-control input-text text-center" type="text" placeholder="Preencha o título da avaliação" v-model="testName" />
-          </div>
-          <div class="col-md-1">
-              <router-link class="btn btn-outline-primary" to="/teacherevaluationsstudents">Criar</router-link>
+        <div class="row linha-checkbox">
+          <div class="form-check form-switch col-md-5">
+            <input class="form-check-input" type="checkbox" id="AlunoTeste1">
+            <label class="form-check-label checkbox-pessoal" for="AlunoTeste1">Vinicius Severino Bernardo Fogaça</label>
           </div>
         </div>
-      </form>
+        <div class="row linha-checkbox">
+          <div class="form-check form-switch col-md-5">
+            <input class="form-check-input" type="checkbox" id="AlunoTeste2">
+            <label class="form-check-label checkbox-pessoal" for="AlunoTeste2">Marcelo Fábio Kevin Moreira</label>
+          </div>
+        </div>
+        <div class="row linha-checkbox">
+          <div class="form-check form-switch col-md-5">
+            <input class="form-check-input" type="checkbox" id="AlunoTeste3">
+            <label class="form-check-label checkbox-pessoal" for="AlunoTeste3">Manuel Manoel Julio da Cruz</label>
+          </div>
+        </div>
+        <div class="row linha-checkbox">
+          <div class="form-check form-switch col-md-5">
+            <input class="form-check-input" type="checkbox" id="AlunoTeste4">
+            <label class="form-check-label checkbox-pessoal" for="AlunoTeste4">Vitor Renato Nunes</label>
+          </div>
+        </div>
+        <div class="row linha-checkbox">
+          <div class="form-check form-switch col-md-5">
+            <input class="form-check-input" type="checkbox" id="AlunoTeste5">
+            <label class="form-check-label checkbox-pessoal" for="AlunoTeste5">Olivia Sophie Sabrina Pinto</label>
+          </div>
+        </div>
 
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">TÍTULO DA AVALIAÇÃO</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Avaliação de Português</th>
-            <td><button class="btn btn-outline-danger">Excluir</button></td>
-          </tr>
-          <tr>
-            <th scope="row">Avaliação de Matemática</th>
-            <td><button class="btn btn-outline-danger">Excluir</button></td>
-          </tr>
-          <tr>
-            <th scope="row">Avaliação de História</th>
-            <td><button class="btn btn-outline-danger">Excluir</button></td>
-          </tr>
-        </tbody>
-      </table>
+        <hr/>
+
+        <router-link class="btn btn-outline-warning col-md-2" to="/teacherevaluations">Voltar</router-link> |
+        <router-link class="btn btn-outline-danger col-md-2" to="/teacher">Início</router-link> |
+        <router-link class="btn btn-outline-success col-md-2" to="/teacherquestions">Avançar</router-link>
+      </form>
     </div>
   </div>
 </template>
@@ -74,17 +79,8 @@ import axios from "axios";
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
-  name: "TeacherEvaluations",
+  name: "TeacherEvaluationsStudents",
   data () {
-    return {info: null}
-  },
-  methods: {
-    backRoot() {
-      this.$router.push("/teacher");
-    }
-  },
-  name: "Students",
-  data() {
     return {
       students: {
         userId: "",
@@ -96,6 +92,9 @@ export default {
     };
   },
   methods: {
+    backRoot() {
+      this.$router.push("/teacher");
+    },
     getStudents: function () {
       axios.get('https://group3-anima.herokuapp.com/User/student')
         .then(response => {this.students = response.data})
@@ -120,17 +119,18 @@ export default {
 .nav-Logoff {
   margin-right: 5px;
 }
-.radio-group {
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-}
 .titulo {
   margin-top: 2%;
   color: #09605d;
 }
 .form-criar-teste {
   margin-top: 1%;
+}
+.checkbox-pessoal {
+  margin-left: 0 auto;
+  padding-left: 0 auto;
+}
+.linha-checkbox {
+  margin-left: 30%;
 }
 </style>

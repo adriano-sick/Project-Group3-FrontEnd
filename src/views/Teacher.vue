@@ -1,13 +1,38 @@
 <template>
-  <div class="container">
-    <div class="banner-text">
-      <p>O que você quer acessar?</p>
-    </div>
-    <nav class="nav-teacher">
-      <router-link to="/teachergrades">Professor - Notas</router-link>
+  <div class="container-Default">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1 nav-Brand-Default">Infinite</span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <router-link to="/teacherevaluations">Professor - Provas</router-link>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Início<span class="sr-only">(você está aqui)</span></a>
+            </li>
+            <li>
+              <router-link class="nav-link" to="/teacherevaluations">Provas</router-link>              
+            </li>
+            <li>
+              <router-link class="nav-link" to="/teachergrades">Notas</router-link>
+            </li>
+          </ul>
+        </div>
+
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse nav-Logoff">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <router-link class="nav-link" to="/">Sair</router-link>
+            </li>
+          </ul>
+        </div>
     </nav>
+
+    <div class="banner-text">
+      <p>Bem vindo professor(a)</p>
+    </div>
+
     <router-view />
   </div>
 </template>
@@ -19,7 +44,7 @@ export default {
 </script>
 
 <style>
-.container {
+.container-Default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -53,5 +78,14 @@ export default {
   width: 50%;
   align-self: center;
   font-size: 40px;
+  font-weight: bold;
+  color: #09605d;
+  margin-top: 2%;
+}
+.nav-Brand-Default {
+  padding: 15px;
+}
+.nav-Logoff {
+  margin-right: 5px;
 }
 </style>
