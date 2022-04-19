@@ -45,14 +45,16 @@
       </nav>
       <section class="main-section">
         <h1 class="main-title" tabindex="0">Consultar as suas notas</h1>
-        <p>Nome do aluno</p>
+        <p class="student-name">{{ this.userNameComputed }}</p>
         <table>
           <thead>
+            <th>Prova</th>
             <th>Nota</th>
           </thead>
           <tbody>
-            <tr>
-              <th>10</th>
+            <tr v-for="(studenttest, index) in this.listUsersTest" :key="index">
+              <th>{{ studenttest.name }}</th>
+              <th>{{ studenttest.grade }}</th>
             </tr>
           </tbody>
         </table>
@@ -63,24 +65,27 @@
 
 <script>
 import axios from "axios";
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   name: "StudentGrade",
   data() {
-    return {};
+    return {
+      listUsersTest: [],
+    };
   },
   created() {
     this.getUserLogin();
   },
   computed: {
-    ...mapGetters(["token", "users", "userID"]),
+    ...mapGetters(["token", "users", "userID", "userName"]),
     tokenComputed() {
-      console.log(this.$store.state.token);
       return this.$store.state.token;
     },
     userIDComputed() {
-      console.log(this.$store.state.userID);
       return this.$store.state.userID;
+    },
+    userNameComputed() {
+      return this.$store.state.userName;
     },
   },
   methods: {
@@ -94,7 +99,7 @@ export default {
           headers: { Authorization: `Bearer ${this.tokenComputed}` },
         })
         .then((response) => {
-          console.log(response.data);
+          this.listUsersTest = response.data;
           return response.data;
         })
         .then(console.log)
@@ -155,6 +160,12 @@ export default {
 }
 .nav-logoff {
   margin-right: 5px;
+}
+
+.student-name {
+  margin-top: 12px;
+  font-size: 24px;
+  color: gray;
 }
 
 table {

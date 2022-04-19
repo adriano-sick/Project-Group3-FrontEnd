@@ -66,7 +66,7 @@ export default {
           this.usersLogin = response.data.user;
           this.$store.commit("SET_TOKEN", response.data.token);
           this.$store.commit("SET_USERID", response.data.user.userId);
-          this.$store.commit("SET_USERNAME", response.data.user.userName);
+          this.$store.commit("SET_USERNAME", response.data.user.name);
           console.log(this.usersLogin);
           this.getRole();
           return response.data;
