@@ -1,9 +1,17 @@
 <template>
-  <div class="container-Default">
+  <div class="container-default">
     <main class="main-content">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <span class="navbar-brand mb-0 h1 nav-Brand-Default">Infinite</span>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-brand mb-0 h1 nav-brand-default">Infinite</span>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -13,15 +21,21 @@
               <router-link class="nav-link" to="/teacher">Início</router-link>
             </li>
             <li>
-              <router-link class="nav-link" to="/teacherevaluations">Provas</router-link>
+              <router-link class="nav-link" to="/teacherevaluations"
+                >Provas</router-link
+              >
             </li>
             <li>
-              <a class="nav-link" href="#">Notas<span class="sr-only">(você está aqui)</span></a>
+              <a class="nav-link" href="#"
+                >Notas<span class="sr-only">(você está aqui)</span></a
+              >
             </li>
           </ul>
         </div>
 
-        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse nav-Logoff">
+        <div
+          class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse nav-logoff"
+        >
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <router-link class="nav-link" to="/">Sair</router-link>
@@ -31,7 +45,7 @@
       </nav>
 
       <section class="main-section">
-        <h1 class="main-title" tabindex="0">CONSULTE AS NOTAS DOS ALUNOS</h1>
+        <h1 class="main-title" tabindex="0">Consultar as notas dos alunos</h1>
         <table>
           <thead>
             <th>Nome dos Alunos</th>
@@ -65,7 +79,7 @@ export default {
 </script>
 
 <style>
-.container-Default {
+.container-default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -77,7 +91,7 @@ export default {
   margin: 0 auto;
 }
 .main-title {
-  color: white;
+  color: #0c827e;
 }
 table {
   font-family: "Arial";
@@ -96,7 +110,7 @@ table td {
   border-collapse: collapse;
   background-color: black;
 }
-.nav-Logoff {
+.nav-logoff {
   margin-right: 5px;
 }
 </style>

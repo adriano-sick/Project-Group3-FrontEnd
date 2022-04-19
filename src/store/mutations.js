@@ -8,6 +8,9 @@ export default {
     SET_USERID(state, userID) {
         state.userID = userID;
     },
+    SET_USERNAME(state, userName) {
+        state.userName = userName;
+    },    
     SET_TESTS(state, tests) {
         state.tests = tests;
     },

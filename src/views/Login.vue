@@ -3,11 +3,29 @@
     <div class="container-Default" v-if="isActiveLogin">
       <div class="container-login">
         <h3 class="title-login">Infinite<br /></h3>
-        <hr/>
-        <input class="form-control input-login" v-model="emailLogin" type="email" placeholder="Digite seu e-mail"/>
-        <input class="form-control input-password" v-model="passwordLogin" type="password" placeholder="Digite sua senha"/>
-        <button class="btn btn-login btn-outline-success" aria-describedby="infoHelp" @click="postUserLogin">ACESSAR</button>
-        <small id="infoHelp" class="form-text text-muted">Nunca iremos compartilhar seus dados.</small>
+        <hr />
+        <input
+          class="form-control input-login"
+          v-model="emailLogin"
+          type="email"
+          placeholder="Digite seu e-mail"
+        />
+        <input
+          class="form-control input-password"
+          v-model="passwordLogin"
+          type="password"
+          placeholder="Digite sua senha"
+        />
+        <button
+          class="btn btn-login btn-outline-success"
+          aria-describedby="infoHelp"
+          @click="postUserLogin"
+        >
+          ACESSAR
+        </button>
+        <small id="infoHelp" class="form-text text-muted"
+          >Nunca iremos compartilhar seus dados.</small
+        >
         <!--<p class="text-info">Acesse suas informações de Avaliação</p>-->
       </div>
     </div>
@@ -32,8 +50,8 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["token", "users", "userID"]),
-    ...mapMutations(["SET_TOKEN", "SET_USERS", "SET_USERID"]),
+    ...mapGetters(["token", "users", "userID", "userName"]),
+    ...mapMutations(["SET_TOKEN", "SET_USERS", "SET_USERID", "SET_USERNAME"]),
   },
   methods: {
     postUserLogin() {
@@ -47,7 +65,8 @@ export default {
           this.isActiveLogin = false;
           this.usersLogin = response.data.user;
           this.$store.commit("SET_TOKEN", response.data.token);
-          this.$store.commit("SET_USERID", response.data.userId);
+          this.$store.commit("SET_USERID", response.data.user.userId);
+          this.$store.commit("SET_USERNAME", response.data.user.userName);
           console.log(this.usersLogin);
           this.getRole();
           return response.data;
@@ -101,7 +120,7 @@ export default {
 .title-login {
   font-size: 24px;
   font-weight: bold;
-  color: #09605d;
+  color: #0c827e;
 }
 
 .img-icones {
@@ -133,7 +152,7 @@ export default {
   font-family: "Roboto", Arial, sans-serif;
   padding: 4px;
   border-radius: 10px;
-  background-color: #09605d;
+  background-color: #0c827e;
   color: whitesmoke;
   margin: 8px 0;
   cursor: pointer;

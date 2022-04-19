@@ -1,11 +1,50 @@
 <template>
-  <div class="container">
+  <div class="container-default">
     <main class="main-content">
-      <nav>
-        <a href="" @click="backRoot">Voltar</a>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1 nav-brand-default">Infinite</span>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <router-link class="nav-link" to="/student">Início</router-link>
+            </li>
+            <li>
+              <router-link class="nav-link" to="/studentevaluation"
+                >Provas</router-link
+              >
+            </li>
+            <li>
+              <router-link class="nav-link" to="/studentgrade"
+                >Notas(você está aqui)</router-link
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div
+          class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse nav-logoff"
+        >
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <router-link class="nav-link" to="/">Sair</router-link>
+            </li>
+          </ul>
+        </div>
       </nav>
       <section class="main-section">
-        <h1 class="main-title" tabindex="0">CONSULTE SUAS NOTAS</h1>
+        <h1 class="main-title" tabindex="0">Consultar as suas notas</h1>
         <p>Nome do aluno</p>
         <table>
           <thead>
@@ -24,7 +63,7 @@
 
 <script>
 import axios from "axios";
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "StudentGrade",
   data() {
@@ -35,7 +74,14 @@ export default {
   },
   computed: {
     ...mapGetters(["token", "users", "userID"]),
-    ...mapMutations(["SET_TOKEN", "SET_USERS", "SET_USERID"]),
+    tokenComputed() {
+      console.log(this.$store.state.token);
+      return this.$store.state.token;
+    },
+    userIDComputed() {
+      console.log(this.$store.state.userID);
+      return this.$store.state.userID;
+    },
   },
   methods: {
     backRoot() {
@@ -44,10 +90,9 @@ export default {
 
     getUserLogin() {
       axios
-        .get(
-          `https://group3-anima.herokuapp.com/Test/${this.$store.state.userID}`,
-          { headers: { Authorization: `Bearer ${this.$store.state.token}` } }
-        )
+        .get(`https://group3-anima.herokuapp.com/Test/${this.userIDComputed}`, {
+          headers: { Authorization: `Bearer ${this.tokenComputed}` },
+        })
         .then((response) => {
           console.log(response.data);
           return response.data;
@@ -62,7 +107,7 @@ export default {
 </script>
 
 <style>
-.container {
+.container-default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -72,10 +117,46 @@ export default {
   width: 100%;
   height: 100vh;
   margin: 0 auto;
+  background-color: black;
 }
 .main-title {
-  color: white;
+  color: #0c827e;
+  margin-top: 16px;
 }
+
+.nav-student {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-self: center;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+.nav-student a {
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.banner-text {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-self: center;
+  font-size: 40px;
+}
+
+.nav-brand-default {
+  padding: 15px;
+}
+.nav-logoff {
+  margin-right: 5px;
+}
+
 table {
   font-family: "Arial";
   margin: 25px auto;
