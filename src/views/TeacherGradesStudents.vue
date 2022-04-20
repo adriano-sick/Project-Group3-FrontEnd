@@ -45,7 +45,7 @@
       </nav>
 
       <section class="main-section">
-        <h1 class="main-title" tabindex="0">Consultar as notas dos alunos</h1>
+        <h1 class="main-title" tabindex="0">Consultar os testes do aluno</h1>
         <div class="container">
           <table class="table table-dark table-responsive table-striped table-hover">
             <thead>
@@ -56,42 +56,32 @@
             </thead>
             <tbody>
               <tr>
-                <th scope="row">Vinicius Severino Bernardo Fogaça</th>
+                <th scope="row">Avaliação de Português</th>
                 <td>
                   <router-link
                     class="btn btn-outline-info col-md-4"
-                    to="/teachergradesstudent"
-                    >Consultar provas</router-link
+                    to="/teacherstudentsquestions"
+                    >Avaliar respostas</router-link
                   >
                 </td>
               </tr>
               <tr>
-                <th scope="row">Marcelo Fábio Kevin Moreira</th>
+                <th scope="row">Avaliação de Matemática</th>
                 <td>
                   <router-link
                     class="btn btn-outline-info col-md-4"
-                    to="/teachergradesstudent"
-                    >Consultar provas</router-link
+                    to="/teacherstudentsquestions"
+                    >Avaliar respostas</router-link
                   >
                 </td>
               </tr>
               <tr>
-                <th scope="row">Manuel Manoel Julio da Cruz</th>
+                <th scope="row">Avaliação de história</th>
                 <td>
                   <router-link
                     class="btn btn-outline-info col-md-4"
-                    to="/teachergradesstudent"
-                    >Consultar provas</router-link
-                  >
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Vitor Renato Nunes</th>
-                <td>
-                  <router-link
-                    class="btn btn-outline-info col-md-4"
-                    to="/teachergradesstudent"
-                    >Consultar provas</router-link
+                    to="/teacherstudentsquestions"
+                    >Avaliar respostas</router-link
                   >
                 </td>
               </tr>

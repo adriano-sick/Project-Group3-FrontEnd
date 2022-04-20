@@ -7,6 +7,8 @@ import StudentEvaluation from '../views/StudentEvaluation.vue'
 import Teacher from '../views/Teacher.vue'
 import TeacherGrades from '../views/TeacherGrades.vue'
 import TeacherEvaluations from '../views/TeacherEvaluations.vue'
+import TeacherGradesStudents from '../views/TeacherGradesStudents'
+import TeacherStudentsQUestions from '../views/TeacherStudentsQuestions.vue'
 
 
 Vue.use(VueRouter)
@@ -59,6 +61,16 @@ const routes = [{
         path: '/teacherquestions',
         name: 'TeacherQuestions',
         component: () => import('../views/TeacherQuestions.vue')
+    },
+    {
+        path: '/teachergradesstudent',
+        name: 'TeacherGradesStudent',
+        component: () => import('../views/TeacherGradesStudents.vue')
+    },
+    {
+        path: '/teacherstudentsquestions',
+        name: 'TeacherStudentsQuestions',
+        component: () => import('../views/TeacherStudentsQuestions.vue')
     }
 ]
 

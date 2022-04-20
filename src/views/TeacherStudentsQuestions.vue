@@ -45,54 +45,22 @@
       </nav>
 
       <section class="main-section">
-        <h1 class="main-title" tabindex="0">Consultar as notas dos alunos</h1>
+        <h1 class="main-title" tabindex="0">Consultar as respostas do aluno</h1>
         <div class="container">
           <table class="table table-dark table-responsive table-striped table-hover">
             <thead>
               <tr>
-                <th scope="col">Nome</th>
-                <th scope="col"></th>
+                <th scope="col">Questão</th>
+                <th scope="col">Resposta correta</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="row">Vinicius Severino Bernardo Fogaça</th>
+                <th scope="row">Qual a cor do cavalo branco de Napoleão?</th>
                 <td>
-                  <router-link
-                    class="btn btn-outline-info col-md-4"
-                    to="/teachergradesstudent"
-                    >Consultar provas</router-link
-                  >
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Marcelo Fábio Kevin Moreira</th>
-                <td>
-                  <router-link
-                    class="btn btn-outline-info col-md-4"
-                    to="/teachergradesstudent"
-                    >Consultar provas</router-link
-                  >
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Manuel Manoel Julio da Cruz</th>
-                <td>
-                  <router-link
-                    class="btn btn-outline-info col-md-4"
-                    to="/teachergradesstudent"
-                    >Consultar provas</router-link
-                  >
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Vitor Renato Nunes</th>
-                <td>
-                  <router-link
-                    class="btn btn-outline-info col-md-4"
-                    to="/teachergradesstudent"
-                    >Consultar provas</router-link
-                  >
+                  <div class="form-check form-switch checkbox-personal">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled" disabled>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -145,8 +113,15 @@ table td {
   padding: 12px 35px;
   border-collapse: collapse;
   background-color: black;
+  text-align: center;
+  /* center checkbox horizontally */
 }
 .nav-logoff {
   margin-right: 5px;
+}
+.checkbox-personal {
+  text-align: center;
+  position: relative;
+  margin-left: 45%;
 }
 </style>
