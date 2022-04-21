@@ -1,7 +1,7 @@
 <template>
   <div class="container-default">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <span class="navbar-brand mb-0 h1 nav-brand-Default">Infinite</span>
+      <span class="navbar-brand mb-0 h1 nav-brand-default">Infinite</span>
       <button
         class="navbar-toggler"
         type="button"
