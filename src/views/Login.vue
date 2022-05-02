@@ -1,9 +1,10 @@
 <template>
   <div>
-    <div class="container-Default" v-if="isActiveLogin">
+    <div class="container-default" v-if="isActiveLogin">
       <div class="container-login">
         <h3 class="title-login">Infinite<br /></h3>
         <hr />
+        <p class="text-info">{{ this.textAccess }}</p>
         <input
           class="form-control input-login"
           v-model="emailLogin"
@@ -26,7 +27,6 @@
         <small id="infoHelp" class="form-text text-muted"
           >Nunca iremos compartilhar seus dados.</small
         >
-        <!--<p class="text-info">Acesse suas informações de Avaliação</p>-->
       </div>
     </div>
 
@@ -47,6 +47,7 @@ export default {
       usersLogin: [],
       isActiveLogin: true,
       isActiveRouter: false,
+      textAccess: "",
     };
   },
   computed: {
@@ -74,6 +75,7 @@ export default {
         .then(console.log)
         .catch((e) => {
           console.log(e);
+          this.textAccess = "Login e/ou Senha inválidos";
         });
     },
     getRole() {
@@ -96,7 +98,7 @@ export default {
 </script>
 
 <style>
-.container-Default {
+.container-default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -121,6 +123,13 @@ export default {
   font-size: 24px;
   font-weight: bold;
   color: #0c827e;
+}
+
+.text-info {
+  display: flex;
+  align-self: center;
+  margin-top: 12px;
+  color: red;
 }
 
 .img-icones {

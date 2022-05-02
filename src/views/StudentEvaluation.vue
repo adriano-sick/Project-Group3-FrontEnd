@@ -47,44 +47,140 @@
       </nav>
       <section class="main-section">
         <h1 class="main-title" tabindex="0">Realizar Avaliação</h1>
-        <p>Nome do aluno</p>
-        <label class="label-questao"> Questão</label><br />
-        <label for="value-1">Alternativa 1</label>
-        <input
-          class="input-radio"
-          type="radio"
-          id="value-1"
-          name="value-prova"
-          value="value-1"
-        />
-        <label for="value-2">Alternativa 2</label>
-        <input
-          class="input-radio"
-          type="radio"
-          id="value-2"
-          name="value-prova"
-          value="value-2"
-        />
-        <label for="value-3">Alternativa 3</label>
-        <input
-          class="input-radio"
-          type="radio"
-          id="value-3"
-          name="value-prova"
-          value="value-3"
-        />
-        <button class="button-action">Finalizar Prova</button>
+        <p>{{ this.userNameComputed }}</p>
+        <label
+          class="label-question"
+          v-for="(test, index) in this.userTestName"
+          :key="index"
+          >{{ test.title }}</label
+        >
+        <div class="form-test">
+          <div
+            v-for="(questiontest, index) in this.listAlternativesTest"
+            :key="index"
+          >
+            <br />
+
+            <input
+              class="form-check-input"
+              type="radio"
+              value="value-1"
+              name="flexRadioDefault"
+              id="flexRadioDefault1"
+            />
+            <label
+              class="form-check-label input-label"
+              for="flexRadioDefault1"
+              >{{ questiontest.text }}</label
+            >
+          </div>
+        </div>
+
+        <button class="btn btn-outline-success btn-action">
+          Finalizar Prova
+        </button>
       </section>
     </main>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import { mapGetters } from "vuex";
 export default {
   name: "StudentEvaluation",
+  data() {
+    return {
+      listUsersTest: [],
+      userTestID: "",
+      userTestName: "",
+      questionTestID: "",
+      listQuestionTest: [],
+      listAlternativesTest: [],
+    };
+  },
+  created() {
+    this.getUserLogin();
+    this.getTestQuestion();
+    this.getAlternativeQuestion();
+  },
+  computed: {
+    ...mapGetters(["token", "users", "userID", "userName"]),
+    tokenComputed() {
+      return this.$store.state.token;
+    },
+    userIDComputed() {
+      return this.$store.state.userID;
+    },
+    userNameComputed() {
+      return this.$store.state.userName;
+    },
+  },
   methods: {
     backRoot() {
       this.$router.push("/");
+    },
+
+    getUserLogin() {
+      axios
+        .get(`https://group3-anima.herokuapp.com/Test/${this.userIDComputed}`, {
+          headers: { Authorization: `Bearer ${this.tokenComputed}` },
+        })
+        .then((response) => {
+          this.listUsersTest = response.data;
+          this.userTestID = response.data.testId;
+          return response.data;
+        })
+        .then(console.log)
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+
+    getTestQuestion() {
+      axios
+        .get(
+          `https://group3-anima.herokuapp.com/Question/a4471dfc-ec00-47b2-25d3-08da2c7a9549`,
+          {
+            headers: { Authorization: `Bearer ${this.tokenComputed}` },
+          }
+        )
+        .then((response) => {
+          this.listQuestionTest = response.data;
+          this.getFilterTest();
+          console.log(this.listQuestionTest);
+          return response.data;
+        })
+        .then(console.log)
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+
+    getAlternativeQuestion() {
+      axios
+        .get(
+          `https://group3-anima.herokuapp.com/Alternative/89f8d50e-0817-4343-2bb6-08da2c7aa697`,
+          {
+            headers: { Authorization: `Bearer ${this.tokenComputed}` },
+          }
+        )
+        .then((response) => {
+          this.listAlternativesTest = response.data;
+          return response.data;
+        })
+        .then(console.log)
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+
+    getFilterTest() {
+      this.userTestName = this.listQuestionTest.filter((question) => {
+        if (question.questionId === "89f8d50e-0817-4343-2bb6-08da2c7aa697") {
+          return question.title;
+        }
+      });
     },
   },
 };
@@ -130,6 +226,26 @@ export default {
 
 .main-title {
   color: #0c827e;
+  margin-top: 16px;
+}
+
+.label-question {
+  color: white;
+  margin-top: 20px;
+}
+
+.input-label {
+  padding-left: 8px;
+}
+
+.main-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: white;
+}
+
+.btn-action {
   margin-top: 16px;
 }
 </style>

@@ -185,4 +185,10 @@ table td {
   border-collapse: collapse;
   background-color: black;
 }
+.main-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 </style>
