@@ -12,6 +12,8 @@ npm install axios
 
 npm install vue-router
 
+npm install vuex
+
 ### Compiles and hot-reloads for development
 
 ```
